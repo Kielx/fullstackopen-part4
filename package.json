@@ -4,7 +4,7 @@
   "description": "Part4 of Fullstackopen course",
   "main": "server.js",
   "scripts": {
-    "test": "jest --runInBand",
+    "test": "jest --runInBand && codecov",
     "test:watch": "jest --watch --runInBand",
     "start": "node server.js",
     "dev": "nodemon server.js",
@@ -51,6 +51,8 @@
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
-    ]
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverage": true
   }
 }

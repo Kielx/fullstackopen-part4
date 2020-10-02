@@ -37,8 +37,21 @@ const basicCheck = async (response) => {
   expect(typeof response.body).toBe("object");
 };
 
-it("returns json array of blogs", async () => {
-  const response = await request.get("/api/blogs");
-  basicCheck(response);
-  expect(response.body.length).toBeGreaterThanOrEqual(1);
+describe("/api/blogs responds correctly to basic HTTP requests", () => {
+  it("returns json array of blogs", async () => {
+    const response = await request.get("/api/blogs");
+    basicCheck(response);
+    expect(response.body.length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("successfully creates a new blog entry", async () => {
+    const response = await request.post("/api/blogs").send({
+      title: "New dawn2",
+      author: "Kielx",
+      url: "http://newDawn2Blog.com",
+      likes: 200,
+    });
+    basicCheck(response);
+    expect(response.body.hasOwnProperty("_id")).toBe(true);
+  });
 });

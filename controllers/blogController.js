@@ -4,7 +4,7 @@ module.exports = {
   getBlogs: async (req, res, next) => {
     try {
       const BlogList = await Blog.find({});
-      res.status(200).json(BlogList);
+      return res.status(200).json(BlogList);
     } catch (e) {
       return next(e);
     }
