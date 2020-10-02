@@ -1,6 +1,6 @@
 const { check, validationResult } = require("express-validator");
 const errorHandlers = require("../utils/errorHandlers");
-const Person = require("../models/Person");
+const Person = require("../models/Blog");
 
 module.exports = {
   checkUsername: check("name")

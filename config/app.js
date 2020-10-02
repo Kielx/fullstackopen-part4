@@ -26,8 +26,8 @@ const mongo = require("./mongo");
 //app.use(express.static("build"));
 
 //router
-const personsApiRouter = require("../router/personsApi");
-app.use("/api/persons", personsApiRouter);
+const blogApiRouter = require("../router/blogApi");
+app.use("/api/blogs", blogApiRouter);
 
 app.get("*", function (req, res) {
   res.status(404).send({ errorMessage: "Requested resource was not found" });
