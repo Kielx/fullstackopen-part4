@@ -4,7 +4,8 @@
   "description": "Part4 of Fullstackopen course",
   "main": "server.js",
   "scripts": {
-    "test": "jest --runInBand && codecov",
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage",
     "test:watch": "jest --watch --runInBand",
     "start": "node server.js",
     "dev": "nodemon server.js",
