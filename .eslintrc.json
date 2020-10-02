@@ -2,13 +2,16 @@
   "env": {
     "browser": true,
     "commonjs": true,
-    "es6": true
+    "es6": true,
+    "jest/globals": true,
+    "jest": true
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "airbnb",
-    "airbnb/hooks"
+    "airbnb/hooks",
+    "plugin:jest/recommended"
   ],
   "globals": {
     "Atomics": "readonly",
@@ -20,7 +23,7 @@
     },
     "ecmaVersion": 11
   },
-  "plugins": ["react"],
+  "plugins": ["react", "jest"],
   "rules": {
     "no-unused-vars": "warn",
     "quotes": "off"
