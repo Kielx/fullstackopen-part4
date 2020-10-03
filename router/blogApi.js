@@ -18,10 +18,10 @@ router.route("/").get(blogController.getBlogs).post(blogController.createBlog);
     personController.createPerson
   ); */
 
-/* router
+router
   .route("/:id")
-  .get(personController.getSinglePerson)
-  .delete(personController.deleteSinglePerson)
-  .patch(checkPhone, validate, personController.patchSinglePerson); */
+  //  .get(personController.getSinglePerson)
+  .delete(blogController.deleteSingleBlog);
+//  .patch(checkPhone, validate, personController.patchSinglePerson); */
 
 module.exports = router;

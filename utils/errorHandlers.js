@@ -13,7 +13,6 @@ const errorHandler = (error, req, res, next) => {
       errorData: error.data,
     });
   } else if (error instanceof Error) {
-    console.log(error);
     res.status("500").json({
       errorMessage: error.message,
       errorData: error.data,

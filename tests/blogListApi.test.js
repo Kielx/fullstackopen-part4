@@ -52,6 +52,13 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
       likes: 200,
     });
     basicCheck(response);
-    expect(response.body.hasOwnProperty("_id")).toBe(true);
+    expect(Object.prototype.hasOwnProperty.call(response.body, "_id")).toBe(
+      true
+    );
+  });
+
+  it("Checks if 404 is returned when invalid api endpoint is provided", async () => {
+    const response = await request.get("/api/blsaogs");
+    expect(response.status).toBe(404);
   });
 });
