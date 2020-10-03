@@ -3,14 +3,12 @@ const express = require("express");
 const router = express.Router();
 const blogController = require("../controllers/blogController");
 
-/* const {
-  checkUsername,
-  validate,
-  checkPhone,
-  checkIfUserExists,
-} = require("../validators/validators"); */
+const { checkIfBlogExists } = require("../validators/validators");
 
-router.route("/").get(blogController.getBlogs).post(blogController.createBlog);
+router
+  .route("/")
+  .get(blogController.getBlogs)
+  .post(checkIfBlogExists, blogController.createBlog);
 /*   .post(
     [checkUsername, checkPhone],
     validate,

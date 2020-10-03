@@ -12,7 +12,7 @@ mongoose
     }
   )
   .catch((err) => {
-    console.log("Error while connecting", err);
+    throw new Error("Error while connecting to mongoDB");
   });
 
 const db = mongoose.connection;

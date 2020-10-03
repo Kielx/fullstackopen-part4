@@ -1,15 +1,17 @@
-const apiError = class ApiError extends Error {
-  constructor(errorMessage, data) {
+class ApiError extends Error {
+  constructor(errorMessage, errorType, data) {
     super(errorMessage);
     this.data = data;
+    this.errorType = errorType;
     this.name = "ApiError";
   }
-};
+}
 
 const errorHandler = (error, req, res, next) => {
-  if (error instanceof apiError) {
+  if (error instanceof ApiError) {
     res.status("400").json({
       errorMessage: error.message,
+      errorType: error.errorType,
       errorData: error.data,
     });
   } else if (error instanceof Error) {
@@ -19,4 +21,4 @@ const errorHandler = (error, req, res, next) => {
     });
   }
 };
-module.exports = { apiError, errorHandler };
+module.exports = { ApiError, errorHandler };

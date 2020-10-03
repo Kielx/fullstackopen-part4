@@ -1,6 +1,6 @@
 const { check, validationResult } = require("express-validator");
 const errorHandlers = require("../utils/errorHandlers");
-const Person = require("../models/Blog");
+const Blog = require("../models/Blog");
 
 module.exports = {
   checkUsername: check("name")
@@ -23,11 +23,11 @@ module.exports = {
       "Phone number provided is invalid - it must be at least 8 digits long"
     ),
 
-  checkIfUserExists: async (req, res, next) => {
+  checkIfBlogExists: async (req, res, next) => {
     try {
-      const user = await Person.find({ name: req.body.name });
+      const user = await Blog.find({ title: req.body.title });
       if (user.length > 0) {
-        throw new errorHandlers.apiError("Username already exists", user);
+        throw new errorHandlers.ApiError("Blog already exists", "operational");
       }
       next();
     } catch (e) {
@@ -42,8 +42,8 @@ module.exports = {
     }
     const extractedErrors = [];
     errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }));
-    throw new errorHandlers.apiError("Validation failed", extractedErrors);
-    //throw extractedErrors;
+    throw new errorHandlers.ApiError("Validation failed", extractedErrors);
+    // throw extractedErrors;
     /*     return res.status(422).json({
       errors: extractedErrors,
     }); */
