@@ -20,6 +20,7 @@
   <br />
   <img alt="Travis (.org)" src="https://travis-ci.com/Kielx/fullstackopen-part4.svg?branch=master">
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/kielx/fullstackopen-part4">
+  <img alt="Codecov" src="https://img.shields.io/codecov/c/github/kielx/fullstackopen-part4">
   </p>
 </p>
 
