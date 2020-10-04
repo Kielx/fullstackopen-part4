@@ -3,24 +3,14 @@ const errorHandlers = require("../utils/errorHandlers");
 const Blog = require("../models/Blog");
 
 module.exports = {
-  checkUsername: check("name")
+  checkBlogTitle: check("title")
     .trim()
     .not()
     .isEmpty()
     .escape()
     .isLength({ min: 3 })
     .withMessage(
-      "Username provided is invalid - it must be at least 3 characters long"
-    ),
-
-  checkPhone: check("phone")
-    .trim()
-    .not()
-    .isEmpty()
-    .escape()
-    .isLength({ min: 8 })
-    .withMessage(
-      "Phone number provided is invalid - it must be at least 8 digits long"
+      "Title provided is invalid - it must be at least 3 characters long"
     ),
 
   checkIfBlogExists: async (req, res, next) => {
