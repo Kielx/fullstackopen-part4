@@ -27,6 +27,12 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - name: Codecov
+      # You may pin to the exact commit or the version.
+      # uses: codecov/codecov-action@6004246f47ab62d32be025ce173b241cd84ac58e
+      uses: codecov/codecov-action@v1.0.13
     env:
       MONGODB_URI_DEV: ${{secrets.MONGODB_URI_DEV}}
       NODE_ENV: 'development' 
+    
+    
