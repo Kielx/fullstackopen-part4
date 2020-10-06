@@ -18,7 +18,7 @@
     ·
     <a href="https://github.com/Kielx/fullstackopen-part4/issues">Request Feature</a>
   <br />
-  <img alt="Travis (.org)" src="https://travis-ci.com/Kielx/fullstackopen-part4.svg?branch=master">
+  <img alt="Github Build Node.js CI" src="https://github.com/Kielx/fullstackopen-part4/workflows/Node.js%20CI/badge.svg">
   <img alt="GitHub issues" src="https://img.shields.io/github/issues/kielx/fullstackopen-part4">
   <img alt="Codecov" src="https://img.shields.io/codecov/c/github/kielx/fullstackopen-part4">
   </p>
