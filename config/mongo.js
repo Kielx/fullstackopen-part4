@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 
-let { MONGODB_URI } = process.env;
-if (process.env.NODE_ENV === "test") {
+let MONGODB_URI = "";
+if (process.env.NODE_ENV === "production") {
+  MONGODB_URI = process.env.MONGODB_URI;
+} else if (process.env.NODE_ENV === "test") {
   MONGODB_URI = process.env.MONGODB_URI_TEST;
 } else if (process.env.NODE_ENV === "development") {
   MONGODB_URI = process.env.MONGODB_URI_DEV;
 }
-
+console.log("mongodb", MONGODB_URI);
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true,
