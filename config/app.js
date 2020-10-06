@@ -20,7 +20,9 @@ app.use(bodyParser.json());
 // logger
 const morgan = require("morgan");
 
-app.use(morgan("dev"));
+if (process.env.NODE_ENV !== "test") {
+  app.use(morgan("dev"));
+}
 
 //  errorHandler
 const errorHandlers = require("../utils/errorHandlers");

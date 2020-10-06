@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const mongoose = require("mongoose");
 
 let MONGODB_URI = "";
@@ -22,5 +23,7 @@ mongoose
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
-  console.log("Connected to mongoDB");
+  if (process.env.NODE_ENV !== "test") {
+    console.log("Connected to mongoDB");
+  }
 });
