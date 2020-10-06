@@ -4,11 +4,11 @@
   "description": "Part4 of Fullstackopen course",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test jest --runInBand --verbose",
+    "test": "cross-env NODE_ENV=test jest --runInBand --verbose",
     "test:coverage": "jest --runInBand --coverage",
     "test:watch": "jest --watch --runInBand",
-    "start": "NODE_ENV=production node server.js",
-    "dev": "NODE_ENV=development nodemon server.js",
+    "start": "cross-env NODE_ENV=production node server.js",
+    "dev": "cross-env NODE_ENV=development nodemon server.js",
     "deploy": "git push heroku master",
     "logs:prod": "heroku logs --tail"
   },
@@ -33,6 +33,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "cross-env": "^7.0.2",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-node": "^4.1.0",
