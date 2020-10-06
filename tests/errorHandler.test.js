@@ -53,11 +53,11 @@ describe("errorHandler works proprely", () => {
     expect(response.body.errorType).toBe("operational");
   });
 
-  it("Throws 500 error with invalid input", async () => {
+  it("Throws 400 error with invalid input", async () => {
     const response = await request.post("/api/blogs").send({
       abc: 200,
     });
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(400);
     expect(response.headers["content-type"]).toMatch(/application\/json/);
     expect(response.body.errorMessage).toBeTruthy();
   });

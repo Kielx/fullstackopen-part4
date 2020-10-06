@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === "production") {
 } else if (process.env.NODE_ENV === "development") {
   MONGODB_URI = process.env.MONGODB_URI_DEV;
 }
-console.log("mongodb", MONGODB_URI);
+
 mongoose
   .connect(MONGODB_URI, {
     useNewUrlParser: true,
