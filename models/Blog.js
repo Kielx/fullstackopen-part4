@@ -7,6 +7,9 @@ const blogSchema = new mongoose.Schema({
   likes: Number,
 });
 
+blogSchema.set("toObject", { getters: true });
+blogSchema.set("toJSON", { getters: true });
+
 const Blog = mongoose.model("Blog", blogSchema);
 
 module.exports = Blog;

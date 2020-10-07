@@ -80,4 +80,9 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
     const response = await request.get("/api/blsaogs");
     expect(response.status).toBe(404);
   });
+
+  it("Checks if returned blog contains id property", async () => {
+    const response = await request.get("/api/blogs");
+    expect(response.body[0].id).toBeDefined();
+  });
 });
