@@ -42,6 +42,12 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
     const response = await request.get("/api/blogs");
     basicCheck(response);
     expect(response.body.length).toBeGreaterThanOrEqual(1);
+    expect(response.body).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ title: "New dawn" }),
+        expect.objectContaining({ likes: 7 }),
+      ])
+    );
   });
 
   it("successfully creates a new blog entry", async () => {
