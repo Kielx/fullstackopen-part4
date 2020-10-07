@@ -6,7 +6,7 @@ const Blog = require("../models/Blog");
 const request = supertest(app);
 let dbBlogs = [];
 
-beforeEach(async () => {
+beforeAll(async () => {
   dbBlogs = [
     {
       title: "New dawn",
@@ -60,6 +60,19 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
     basicCheck(response);
     expect(Object.prototype.hasOwnProperty.call(response.body, "_id")).toBe(
       true
+    );
+  });
+
+  it("returns proper array length after creating additional post with additional blog entry", async () => {
+    const response = await request.get("/api/blogs");
+    basicCheck(response);
+    expect(response.body.length).toBeGreaterThanOrEqual(2);
+    expect(response.body).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ title: "New dawn" }),
+        expect.objectContaining({ likes: 7 }),
+        expect.objectContaining({ url: "http://newDawn2Blog.com" }),
+      ])
     );
   });
 
