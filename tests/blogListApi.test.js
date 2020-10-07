@@ -89,10 +89,24 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
   it("checks that if likes value is ommited it defaults to 0", async () => {
     const response = await request.post("/api/blogs").send({
       title: "Test title123",
+      url: "test.pl",
     });
     basicCheck(response);
     expect(response.body).toEqual(
       expect.objectContaining({ title: "Test title123", likes: 0 })
     );
+  });
+
+  it("checks if title and url are missing from request data the server responds with status 400", async () => {
+    const response = await request.post("/api/blogs").send({
+      title: "abc",
+      author: "Kielx",
+    });
+    expect(response.status).toEqual(500);
+    const response2 = await request.post("/api/blogs").send({
+      title: "",
+      url: "",
+    });
+    expect(response2.status).toEqual(400);
   });
 });

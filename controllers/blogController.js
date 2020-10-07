@@ -6,6 +6,7 @@ module.exports = {
       const BlogList = await Blog.find({});
       return res.status(200).json(BlogList);
     } catch (e) {
+      /* istanbul ignore next */
       return next(e);
     }
   },
@@ -17,6 +18,7 @@ module.exports = {
       delete created["__v"];
       res.status("200").json(created);
     } catch (e) {
+      /* istanbul ignore next */
       next(e);
     }
   },
@@ -35,6 +37,7 @@ module.exports = {
         res.status("200").json(foundBlog);
       }
     } catch (e) {
+      /* istanbul ignore next */
       return next(e);
     }
   },
