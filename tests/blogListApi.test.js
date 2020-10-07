@@ -85,4 +85,14 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
     const response = await request.get("/api/blogs");
     expect(response.body[0].id).toBeDefined();
   });
+
+  it("checks that if likes value is ommited it defaults to 0", async () => {
+    const response = await request.post("/api/blogs").send({
+      title: "Test title123",
+    });
+    basicCheck(response);
+    expect(response.body).toEqual(
+      expect.objectContaining({ title: "Test title123", likes: 0 })
+    );
+  });
 });

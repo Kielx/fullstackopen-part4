@@ -4,7 +4,7 @@ const blogSchema = new mongoose.Schema({
   title: { type: String, required: true, minlength: 3 },
   author: String,
   url: String,
-  likes: Number,
+  likes: { type: Number, default: 0 },
 });
 
 blogSchema.set("toObject", { getters: true });

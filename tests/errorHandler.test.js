@@ -32,7 +32,7 @@ afterAll(async () => {
   mongoose.connection.close();
 });
 
-describe("errorHandler works proprely", () => {
+describe("errorHandler works properly", () => {
   it("ApiError class returns proper values when called", async () => {
     const err = new ApiError("Test message", "operational", {
       name: "invalid",
