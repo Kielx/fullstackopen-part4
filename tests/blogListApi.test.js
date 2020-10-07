@@ -109,4 +109,25 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
     });
     expect(response2.status).toEqual(400);
   });
+
+  it("Checks that complex deleting of blogs from db works", async () => {
+    const created = await request.post("/api/blogs").send({
+      title: "abc1231235",
+      author: "Kielx",
+      url: "123@wp.pl",
+    });
+    basicCheck(created);
+    const { id } = created.body;
+    const deleted = await request.delete(`/api/blogs/${id}`);
+    basicCheck(deleted);
+    const emptyResponse = await request.get(`/api/blogs/${id}`);
+    expect(emptyResponse.status).toBe(404);
+    const emptyDeleted = await request.delete(`/api/blogs/${id}`);
+    expect(emptyDeleted.status).toBe(404);
+    expect(emptyDeleted.body).toEqual(
+      expect.objectContaining({
+        errorMessage: "User with selected id does not exist",
+      })
+    );
+  });
 });
