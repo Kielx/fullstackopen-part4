@@ -1,4 +1,4 @@
-const { check, validationResult } = require("express-validator");
+const { check, query, validationResult } = require("express-validator");
 const errorHandlers = require("../utils/errorHandlers");
 const Blog = require("../models/Blog");
 
@@ -12,6 +12,13 @@ module.exports = {
     .withMessage(
       "Title provided is invalid - it must be at least 3 characters long"
     ),
+
+  checkQueryTitle: query("title")
+    .trim()
+    .not()
+    .isEmpty()
+    .escape()
+    .withMessage(`query parameter name provided is invalid`),
 
   checkIfBlogExists: async (req, res, next) => {
     try {

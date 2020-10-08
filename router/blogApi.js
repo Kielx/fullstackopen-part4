@@ -7,6 +7,7 @@ const {
   checkIfBlogExists,
   checkBlogTitle,
   validate,
+  checkQueryTitle,
 } = require("../validators/validators");
 
 router
@@ -25,5 +26,9 @@ router
   //  .get(personController.getSinglePerson)
   .delete(blogController.deleteSingleBlog);
 //  .patch(checkPhone, validate, personController.patchSinglePerson); */
+
+router
+  .route("/search")
+  .get(checkQueryTitle, validate, blogController.findBlogByName);
 
 module.exports = router;

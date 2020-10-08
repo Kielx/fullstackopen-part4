@@ -41,4 +41,23 @@ module.exports = {
       return next(e);
     }
   },
+
+  findBlogByName: async (req, res, next) => {
+    try {
+      let foundBlog = await Blog.find({ title: req.query.title });
+      if (foundBlog === null) {
+        res
+          .status(404)
+          .json({ errorMessage: "Blog with such name does not exist" });
+        next();
+      } else {
+        // foundBlog = foundBlog.toJSON();
+        delete foundBlog["__v"];
+        res.status("200").json(foundBlog);
+      }
+    } catch (e) {
+      /* istanbul ignore next */
+      return next(e);
+    }
+  },
 };
