@@ -30,7 +30,6 @@ module.exports = {
         res
           .status(404)
           .json({ errorMessage: "User with selected id does not exist" });
-        next();
       } else {
         foundBlog = foundBlog.toJSON();
         delete foundBlog["__v"];
@@ -43,16 +42,16 @@ module.exports = {
   },
 
   findBlogByName: async (req, res, next) => {
+    const searchRegexp = new RegExp(`^${req.query.title}?$`, "ig");
+
     try {
-      let foundBlog = await Blog.find({ title: req.query.title });
-      if (foundBlog === null) {
+      const foundBlog = await Blog.find({ title: searchRegexp });
+
+      if (!foundBlog.length) {
         res
           .status(404)
           .json({ errorMessage: "Blog with such name does not exist" });
-        next();
       } else {
-        // foundBlog = foundBlog.toJSON();
-        delete foundBlog["__v"];
         res.status("200").json(foundBlog);
       }
     } catch (e) {

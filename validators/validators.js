@@ -18,7 +18,7 @@ module.exports = {
     .not()
     .isEmpty()
     .escape()
-    .withMessage(`query parameter name provided is invalid`),
+    .withMessage(`query parameter 'title' provided is missing or is invalid`),
 
   checkIfBlogExists: async (req, res, next) => {
     try {

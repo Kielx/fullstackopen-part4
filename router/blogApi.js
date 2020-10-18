@@ -25,7 +25,8 @@ router
   .route("/:id")
   //  .get(personController.getSinglePerson)
   .delete(blogController.deleteSingleBlog);
-//  .patch(checkPhone, validate, personController.patchSinglePerson); */
+
+//.patch(personController.patchBlog);
 
 router
   .route("/search")
