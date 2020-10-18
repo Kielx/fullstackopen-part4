@@ -14,7 +14,13 @@ module.exports = {
   getSingleBlog: async (req, res, next) => {
     try {
       const foundBlog = await Blog.findById(req.params.id);
-      return res.status(200).json(foundBlog);
+      if (foundBlog === null) {
+        res
+          .status(404)
+          .json({ errorMessage: "User with selected id does not exist" });
+      } else {
+        return res.status(200).json(foundBlog);
+      }
     } catch (e) {
       /* istanbul ignore next */
       return next(e);
