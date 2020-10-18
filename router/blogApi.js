@@ -23,10 +23,9 @@ router
 
 router
   .route("/:id")
-  //  .get(personController.getSinglePerson)
-  .delete(blogController.deleteSingleBlog);
-
-//.patch(personController.patchBlog);
+  .get(blogController.getSingleBlog)
+  .delete(blogController.deleteSingleBlog)
+  .patch(blogController.patchSingleBlog);
 
 router
   .route("/search")
