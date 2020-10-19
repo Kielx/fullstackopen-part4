@@ -76,25 +76,19 @@ module.exports = {
     }
   },
 
-  patchSingleBlog: async (req, res, next) => {
+  patchSingleBlog: async (req, res) => {
     try {
       const foundBlog = await Blog.findById(req.params.id);
-
-      if (foundBlog === null) {
-        res
-          .status(404)
-          .json({ errorMessage: "Blog with such name does not exist" });
-      } else {
-        foundBlog.title = req.body.title;
-        foundBlog.author = req.body.author;
-        foundBlog.likes = req.body.likes;
-        foundBlog.url = req.body.url;
-        await foundBlog.save();
-        res.status("200").json(foundBlog);
-      }
+      foundBlog.title = req.body.title;
+      foundBlog.author = req.body.author;
+      foundBlog.likes = req.body.likes;
+      foundBlog.url = req.body.url;
+      await foundBlog.save();
+      res.status("200").json(foundBlog);
     } catch (e) {
-      /* istanbul ignore next */
-      return next(e);
+      res
+        .status(404)
+        .json({ errorMessage: "Blog with such name does not exist" });
     }
   },
 };

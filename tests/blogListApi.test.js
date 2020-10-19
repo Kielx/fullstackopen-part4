@@ -163,4 +163,31 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
     );
     expect(nameSearchResult.status).toEqual(404);
   });
+
+  it("Properly patches a single resource", async () => {
+    const foundBlogs = await request.get("/api/blogs");
+    basicCheck(foundBlogs);
+    const testId = foundBlogs.body[0].id;
+    const patchedBlog = await request.patch(`/api/blogs/${testId}`).send({
+      title: "abc",
+      author: "Kielx",
+      url: "www.test.pl",
+    });
+    expect(patchedBlog.status).toBe(200);
+    expect(patchedBlog.body).toEqual(
+      expect.objectContaining({
+        title: "abc",
+        url: "www.test.pl",
+      })
+    );
+  });
+
+  it("Returns 404 error when patch request to nonexistent resource is sent", async () => {
+    const patchedBlog = await request.patch(`/api/blogs/1500100900`).send({
+      title: "abc",
+      author: "Kielx",
+      url: "www.test.pl",
+    });
+    expect(patchedBlog.status).toBe(404);
+  });
 });
