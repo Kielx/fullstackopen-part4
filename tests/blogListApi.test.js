@@ -156,4 +156,11 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
       ])
     );
   });
+
+  it("Returns 404 error when nonexistent name is provided", async () => {
+    const nameSearchResult = await request.get(
+      "/api/blogs/search?title=New+dwayne"
+    );
+    expect(nameSearchResult.status).toEqual(404);
+  });
 });
