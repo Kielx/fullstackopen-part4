@@ -22,13 +22,13 @@ router
   ); */
 
 router
+  .route("/search")
+  .get(checkQueryTitle, validate, blogController.findBlogByName);
+
+router
   .route("/:id")
   .get(blogController.getSingleBlog)
   .delete(blogController.deleteSingleBlog)
   .patch(blogController.patchSingleBlog);
-
-router
-  .route("/search")
-  .get(checkQueryTitle, validate, blogController.findBlogByName);
 
 module.exports = router;

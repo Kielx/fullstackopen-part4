@@ -130,4 +130,30 @@ describe("/api/blogs responds correctly to basic HTTP requests", () => {
       })
     );
   });
+
+  it("Checks that API returns a single blog with valid ID", async () => {
+    const foundBlogs = await request.get("/api/blogs");
+    basicCheck(foundBlogs);
+    const testId = foundBlogs.body[0].id;
+    const foundSingleBlog = await request.get(`/api/blogs/${testId}`);
+    expect(foundSingleBlog.status).toBe(200);
+    expect(foundSingleBlog.body).toEqual(
+      expect.objectContaining({
+        title: "New dawn",
+      })
+    );
+  });
+
+  it("Finds a blog when searching by name", async () => {
+    const nameSearchResult = await request.get(
+      "/api/blogs/search?title=New+dawn"
+    );
+    expect(nameSearchResult.body).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          title: "New dawn",
+        }),
+      ])
+    );
+  });
 });
