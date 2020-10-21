@@ -33,10 +33,12 @@ require("./mongo");
 // static folder
 // app.use(express.static("build"));
 
-// router
+// routers
 const blogApiRouter = require("../router/blogApi");
+const usersRouter = require("../router/usersRouter");
 
 app.use("/api/blogs", blogApiRouter);
+app.use("/api/users", usersRouter);
 
 app.get("*", (req, res) => {
   res.status(404).send({ errorMessage: "Requested resource was not found" });
